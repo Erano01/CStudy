@@ -1,65 +1,46 @@
 # Object & Memory
+// Variables, pointers, addresses, dereferencing ele alınır.
+C/C++'da bir nesnenin tanımı şöyledir: belirli bir tipin değerini tutan bir memory region.
+Java/C#'tan hatırlayabileceğiniz "nesne = sınıf instance'" tanımı, bu dillerin kendi kurallarının bir parçasıdır.
 
-Variables, pointers, addresses, dereferencing.
-
-## Object nedir?
-
-C/C++'da bir **object**, belirli bir tipin değerini tutan bir **memory
-region**'dır. Java/C#'tan hatırlanabilecek "nesne = sınıf instance'ı"
-tanımı, o dillerin kendi kuralıdır; C/C++'ta `int x = 5;` satırındaki `x`
-de zaten başlı başına bir object'tir (heap'te `new`/`malloc` ile
-oluşmasına gerek yok).
-
-## Java'da: Reference / Referent
-
-```java
-Person person = new Person();
+### Javada
 ```
-
-- **Reference** → `person`
-- **Referent**  → `new Person()`
-
-## C++'ta: Pointer / Pointee / Reference / Referent
-
-```cpp
-Person *person = new Person();
+Person person = new Person()
+Reference -> person
+Referent -> new Person()
+```
+### C++'da ->
+```
+Person *person = new Person(); 
 Person &ref = *person;
+Pointer -> person (adresi tutan değişken)
+Pointee -> *person (person'ın işaret ettiği obje)
+Reference -> ref (aynı objeye başka bir "isim")
+Referent -> ref'in işaret ettiği obje (yani yine *person, aynı bellek adresi)
+Dereference -> *person (pointer üzerinden objeye ulaşma işlemi; ref için işlem örtük, syntax'ta görünmez)
 ```
-
-- **Pointer**  → `person` (adresi tutan değişken)
-- **Pointee**  → `*person` (`person`'ın işaret ettiği obje)
-- **Reference** → `ref` (aynı objeye başka bir "isim")
-- **Referent**  → `ref`'in işaret ettiği obje (yani yine `*person`, aynı
-  bellek adresi)
-- **Dereference** → `*person` (pointer üzerinden objeye ulaşma işlemi;
-  `ref` için bu işlem örtük/implicit'tir, syntax'ta ayrıca görünmez)
-
-## C'de: Pointer / Pointee (Reference yok)
-
-```c
+### C'da ->
+```
 Person *person = malloc(sizeof(Person));
+Pointer -> person (adresi tutan değişken)
+Pointee -> *person (person'ın işaret ettiği obje)
+Dereference -> *person (pointer üzerinden objeye ulaşma işlemi)
+Reference -> yok
+Referent -> yok, referans olmadığı için dolayısıyla referent'da olmuyor
+```
+```
+C ve  C++ da dereference'in amacı pointee'nin değerine ulaşmaktır 
+```
+### Types
+```
+C'de de 2 farklı variable type var: user-defined types ve built-in types.
+- Built-in types -> derleyici tarafından doğrudan tanınır: int, char, float, double, short, long, unsigned, _Bool (C99+), void
+
+- User-defined types -> programcı tanımlar: struct, union, enum (C'de "class" yok, ama struct/union/enum aynı "kullanıcı tipi tanımlama" rolünü üstlenir)
 ```
 
-- **Pointer** → `person` (adresi tutan değişken)
-- **Pointee** → `*person` (`person`'ın işaret ettiği obje)
-- **Dereference** → `*person`
-- **Reference / Referent** → yok. C'de referans kavramı olmadığı için
-  referent de yok; tüm dolaylı erişim pointer + dereference ile yapılır.
 
-## Dereference'in amacı
-
-C ve C++'ta dereference'in amacı, pointer üzerinden **pointee'nin
-değerine ulaşmaktır.**
-
-## Kod
-
-- [`src/main.c`](src/main.c) — C tarafında object/pointer/pointee/dereference
-- [`src/main.cpp`](src/main.cpp) — C++ tarafında pointer/pointee/reference/referent/dereference,
-  `&ref == person` karşılaştırmasıyla reference ve pointer'ın aynı referent'ı
-  gösterdiğinin ispatı
-
-
-## Executing Program
+### Executing Program
 1. cd object-and-memory
 2. cmake -S . -B build
 3. cmake --build build
