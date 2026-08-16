@@ -1,4 +1,0 @@
-/home/erano/CppWorkspace/CStudy/object-and-memory/build/CMakeFiles/c_demo.dir
-/home/erano/CppWorkspace/CStudy/object-and-memory/build/CMakeFiles/cpp_demo.dir
-/home/erano/CppWorkspace/CStudy/object-and-memory/build/CMakeFiles/edit_cache.dir
-/home/erano/CppWorkspace/CStudy/object-and-memory/build/CMakeFiles/rebuild_cache.dir
